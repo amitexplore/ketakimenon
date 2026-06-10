@@ -105,6 +105,43 @@ h1, h2, h3, h4, h5,
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
+/* ─── Hero entrance animations ─── */
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes glowExpand {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1);   }
+}
+
+@keyframes bracketDraw {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+.animate-hero-bg {
+  animation: heroFadeIn 1.6s ease-out both;
+}
+.animate-glow {
+  animation: glowExpand 2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-bracket {
+  animation: bracketDraw 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-fade-up {
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-fade-in {
+  animation: heroFadeIn 1s ease-out both;
+}
+
 /* Gold text gradient */
 .gold-text {
   background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold));

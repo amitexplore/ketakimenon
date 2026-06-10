@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import OrnamentDivider from '@/components/OrnamentDivider';
+import HeroSection from '@/components/HeroSection';
 
 const stats = [
   { count: '200+', label: 'Live Performances' },
@@ -22,74 +23,7 @@ export default function HomePage() {
     <div>
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#1A0404] texture-overlay">
-        {/* Radial glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 70% 60% at 50% 45%, rgba(107,26,26,0.55) 0%, transparent 70%)',
-          }}
-        />
-
-        {/* Content frame */}
-        <div className="relative z-10 flex-1 flex items-center justify-center text-center px-8">
-        <div className="max-w-3xl mx-auto py-24">
-          {/* Corner bracket decoration */}
-          <div className="relative inline-block px-10 py-12 frame-corners">
-            <p className="text-[10px] tracking-[0.5em] text-[#C9A84C] uppercase mb-6">
-              Official Website of
-            </p>
-
-            <h1
-              className="text-6xl sm:text-7xl md:text-8xl font-light text-[#FAF6EE] leading-none mb-3"
-              style={{ fontFamily: 'var(--font-cormorant), serif', fontStyle: 'italic' }}
-            >
-              Ketaki
-            </h1>
-            <h1
-              className="text-6xl sm:text-7xl md:text-8xl font-semibold text-[#FAF6EE] leading-none tracking-wide"
-              style={{ fontFamily: 'var(--font-cormorant), serif' }}
-            >
-              Menon
-            </h1>
-
-            <OrnamentDivider symbol="✦" className="my-7" light />
-
-            <p
-              className="text-[#E8DCC8] text-base sm:text-lg font-light tracking-widest leading-relaxed"
-              style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
-            >
-              Vocalist &nbsp;·&nbsp; Educator
-            </p>
-          </div>
-
-          <p className="text-[#9B7070] text-sm mt-8 leading-relaxed max-w-md mx-auto tracking-wide">
-            Rooted in Hindustani Classical and Light Music Tradition · Performing across India and the world
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-            <Link
-              href="/about"
-              className="px-9 py-3.5 bg-[#C9A84C] text-[#1A0404] text-[11px] font-semibold tracking-[0.3em] uppercase hover:bg-[#E8C97A] transition-colors"
-            >
-              Discover Her Story
-            </Link>
-            <Link
-              href="/contact"
-              className="px-9 py-3.5 border border-[#C9A84C]/60 text-[#C9A84C] text-[11px] font-semibold tracking-[0.3em] uppercase hover:border-[#C9A84C] hover:bg-[#C9A84C]/8 transition-all"
-            >
-              Book a Performance
-            </Link>
-          </div>
-        </div>
-        </div>
-
-        {/* Scroll hint */}
-        <div className="relative z-10 flex flex-col items-center gap-3 text-[#9B7070] pb-10">
-          <span className="text-[9px] tracking-[0.45em] uppercase">Scroll</span>
-          <div className="w-px h-10 scroll-indicator" style={{ background: 'linear-gradient(to bottom, #C9A84C, transparent)' }} />
-        </div>
-      </section>
+      <HeroSection />
 
       {/* ── STATS BAND ──────────────────────────────── */}
       <section className="bg-[#FAF6EE] border-y border-[#C9A84C]/20 py-14">
