@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import OrnamentDivider from '@/components/OrnamentDivider';
 
 const timeline = [
@@ -12,19 +13,15 @@ const timeline = [
 ];
 
 const accolades = [
-  { award: 'Sangeet Natak Akademi Award', year: '2021' },
-  { award: 'Best Classical Vocalist – IndieMusic Awards', year: '2019' },
-  { award: 'Cultural Ambassador – Government of Maharashtra', year: '2020' },
-  { award: 'Rolling Stone India – Top 10 Artists to Watch', year: '2018' },
-  { award: 'Rotary International Arts Excellence Award', year: '2017' },
-  { award: 'Sur Mani Award – Gandharva Mahavidyalaya', year: '2012' },
+  { award: 'Sangeet Visharad from Akhil Bharatiya Gandharva Mahavidyalay' },
+  { award: 'Pune Idol 2014' },
+  { award: 'University Gold Medalist in Light Music' },
+  { award: 'Performance in renowned TV shows' },
 ];
 
 const profile = [
-  { label: 'Gharana',   value: 'Jaipur-Atrauli' },
-  { label: 'Genre',     value: 'Hindustani Classical, Semi-classical, Fusion' },
-  { label: 'Languages', value: 'Hindi · Sanskrit · Marathi · Bengali' },
-  { label: 'Based in',  value: 'Pune, India' },
+  { label: 'Genre',    value: 'Bollywood · Marathi · Ghazal · Bhajan · Fusion · Unplugged' },
+  { label: 'Based in', value: 'Pune, India' },
 ];
 
 export default function AboutPage() {
@@ -46,13 +43,17 @@ export default function AboutPage() {
       {/* ── BIO ─────────────────────────────────────── */}
       <section className="py-20 px-6 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Photo placeholder */}
+          {/* Portrait */}
           <div className="relative">
-            <div className="aspect-[4/5] bg-[#F4E8E8] border border-[#C9A84C]/25 flex items-center justify-center overflow-hidden">
-              <div className="text-center">
-                <div className="text-8xl mb-4 opacity-20">♪</div>
-                <p className="text-[10px] tracking-[0.3em] text-[#9B7070] uppercase">Portrait Placeholder</p>
-              </div>
+            <div className="aspect-[4/5] border border-[#C9A84C]/25 overflow-hidden relative">
+              <Image
+                src="/photos/portrait 1.jpeg"
+                alt="Ketaki Menon"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
             </div>
             {/* Decorative offset border */}
             <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#C9A84C]/20 -z-10" />
@@ -84,7 +85,7 @@ export default function AboutPage() {
             </p>
 
             {/* Profile grid */}
-            <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="pt-4 grid grid-cols-1 gap-3">
               {profile.map(({ label, value }) => (
                 <div key={label} className="border-l-2 border-[#C9A84C] pl-4 py-1">
                   <div className="text-[9px] tracking-[0.35em] text-[#C9A84C] uppercase mb-0.5">{label}</div>
@@ -153,16 +154,15 @@ export default function AboutPage() {
           </h2>
           <OrnamentDivider />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {accolades.map(({ award, year }) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          {accolades.map(({ award }) => (
             <div
               key={award}
               className="card-premium p-6 flex gap-4 items-start"
             >
               <span className="text-[#C9A84C] text-lg mt-0.5 shrink-0">✦</span>
               <div>
-                <p className="text-sm text-[#3D1010] leading-snug mb-1">{award}</p>
-                <p className="text-[10px] tracking-widest text-[#9B7070]">{year}</p>
+                <p className="text-sm text-[#3D1010] leading-snug">{award}</p>
               </div>
             </div>
           ))}
