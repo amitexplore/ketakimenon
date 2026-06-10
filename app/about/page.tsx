@@ -2,7 +2,7 @@ import OrnamentDivider from '@/components/OrnamentDivider';
 
 const timeline = [
   { year: '1992', event: 'Born in Pune into a family with deep roots in Hindustani classical music.' },
-  { year: '2000', event: 'Commenced formal training in the Jaipur-Atrauli Gharana under Pandit R. Sharma.' },
+  { year: '2000', event: 'Commenced formal training in Hindustani Classical and Light Music Tradition under Pandit R. Sharma.' },
   { year: '2008', event: 'Performed at the Sawai Gandharva Bhimsen Mahotsav — one of India\'s most prestigious classical music festivals.' },
   { year: '2012', event: 'Completed Visharad (Graduate) from Akhil Bharatiya Gandharva Mahavidyalaya with distinction.' },
   { year: '2015', event: 'Debut album "Raag Prakaash" released to national acclaim.' },

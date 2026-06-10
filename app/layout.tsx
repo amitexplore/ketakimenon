@@ -21,7 +21,7 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: 'Ketaki Menon | Vocalist & Music Artist',
-  description: 'Official website of Ketaki Menon – Hindustani Classical Vocalist, Composer, and Music Educator.',
+  description: 'Official website of Ketaki Menon – Hindustani Classical Vocalist and Music Educator.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

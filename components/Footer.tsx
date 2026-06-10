@@ -47,12 +47,12 @@ export default function Footer() {
                 Ketaki Menon
               </h3>
               <p className="text-[10px] tracking-[0.35em] text-[#C9A84C] uppercase">
-                Vocalist · Composer · Educator
+                Vocalist · Educator
               </p>
             </div>
             <div className="h-px w-10 bg-[#C9A84C]/40" />
             <p className="text-sm text-[#C4A8A8] leading-relaxed">
-              Rooted in the Jaipur-Atrauli Gharana tradition.<br />
+              Rooted in Hindustani Classical and Light Music tradition.<br />
               Performing, teaching, and creating music<br />that endures.
             </p>
           </div>

@@ -22,7 +22,7 @@ export default function HomePage() {
     <div>
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1A0404] texture-overlay">
+      <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#1A0404] texture-overlay">
         {/* Radial glow */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -32,7 +32,8 @@ export default function HomePage() {
         />
 
         {/* Content frame */}
-        <div className="relative z-10 text-center px-8 max-w-3xl mx-auto py-24">
+        <div className="relative z-10 flex-1 flex items-center justify-center text-center px-8">
+        <div className="max-w-3xl mx-auto py-24">
           {/* Corner bracket decoration */}
           <div className="relative inline-block px-10 py-12 frame-corners">
             <p className="text-[10px] tracking-[0.5em] text-[#C9A84C] uppercase mb-6">
@@ -58,12 +59,12 @@ export default function HomePage() {
               className="text-[#E8DCC8] text-base sm:text-lg font-light tracking-widest leading-relaxed"
               style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
             >
-              Vocalist &nbsp;·&nbsp; Composer &nbsp;·&nbsp; Educator
+              Vocalist &nbsp;·&nbsp; Educator
             </p>
           </div>
 
           <p className="text-[#9B7070] text-sm mt-8 leading-relaxed max-w-md mx-auto tracking-wide">
-            Rooted in the Jaipur-Atrauli Gharana · Performing across India and the world
+            Rooted in Hindustani Classical and Light Music Tradition · Performing across India and the world
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
@@ -81,9 +82,10 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+        </div>
 
         {/* Scroll hint */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-[#9B7070]">
+        <div className="relative z-10 flex flex-col items-center gap-3 text-[#9B7070] pb-10">
           <span className="text-[9px] tracking-[0.45em] uppercase">Scroll</span>
           <div className="w-px h-10 scroll-indicator" style={{ background: 'linear-gradient(to bottom, #C9A84C, transparent)' }} />
         </div>
