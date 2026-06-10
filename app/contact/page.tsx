@@ -33,9 +33,8 @@ const contactCards = [
 
 const socials = [
   { name: 'Instagram',   handle: '@ketakimenon',            href: 'https://www.instagram.com/ketakimenon?igsh=MWVtOXIzdmNjanYxMQ==' },
-  { name: 'YouTube',     handle: 'Ketaki Menon Music',      href: '#' },
-  { name: 'Facebook',    handle: 'Ketaki Menon Official',   href: '#' },
-  { name: 'Spotify',     handle: 'Ketaki Menon',            href: '#' },
+  { name: 'YouTube',     handle: 'Ketaki Menon Music',      href: 'https://youtube.com/@ketakinaikmenon7709?si=skK5XTsXqgK8tQS4' },
+  { name: 'Facebook',    handle: 'Ketaki Menon Official',   href: 'https://www.facebook.com/share/18eFGT62uz/?mibextid=wwXIfr' },
 ];
 
 const subjects = [

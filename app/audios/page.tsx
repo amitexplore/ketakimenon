@@ -33,7 +33,6 @@ const tracks = [
 ];
 
 const platforms = [
-  { name: 'Spotify',       icon: '♫' },
   { name: 'Apple Music',   icon: '♪' },
   { name: 'YouTube Music', icon: '▶' },
   { name: 'Amazon Music',  icon: '◈' },
