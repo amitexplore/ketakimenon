@@ -175,6 +175,8 @@ export default function VideosPage() {
           <p className="text-sm text-[#9B7070] mb-7">Watch all performances and studio sessions on YouTube.</p>
           <a
             href="#"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-3 bg-[#6B1A1A] text-[#FAF6EE] text-[10px] tracking-[0.3em] uppercase hover:bg-[#8B2E2E] transition-colors"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

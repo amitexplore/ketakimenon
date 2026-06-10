@@ -1,12 +1,12 @@
 import OrnamentDivider from '@/components/OrnamentDivider';
 
 const timeline = [
-  { year: '1992', event: 'Born in Mumbai into a family with deep roots in Hindustani classical music.' },
+  { year: '1992', event: 'Born in Pune into a family with deep roots in Hindustani classical music.' },
   { year: '2000', event: 'Commenced formal training in the Jaipur-Atrauli Gharana under Pandit R. Sharma.' },
   { year: '2008', event: 'Performed at the Sawai Gandharva Bhimsen Mahotsav — one of India\'s most prestigious classical music festivals.' },
   { year: '2012', event: 'Completed Visharad (Graduate) from Akhil Bharatiya Gandharva Mahavidyalaya with distinction.' },
   { year: '2015', event: 'Debut album "Raag Prakaash" released to national acclaim.' },
-  { year: '2018', event: 'Founded Swaranjali Music Academy in Bandra, Mumbai, now home to 500+ students.' },
+  { year: '2018', event: 'Founded Swaranjali Music Academy in Pune, now home to 500+ students.' },
   { year: '2022', event: 'Headlined the International Music Summit in Singapore.' },
   { year: '2024', event: 'Ongoing world tour and second album in production.' },
 ];
@@ -24,7 +24,7 @@ const profile = [
   { label: 'Gharana',   value: 'Jaipur-Atrauli' },
   { label: 'Genre',     value: 'Hindustani Classical, Semi-classical, Fusion' },
   { label: 'Languages', value: 'Hindi · Sanskrit · Marathi · Bengali' },
-  { label: 'Based in',  value: 'Mumbai, India' },
+  { label: 'Based in',  value: 'Pune, India' },
 ];
 
 export default function AboutPage() {
@@ -77,7 +77,7 @@ export default function AboutPage() {
               Ketaki Menon is one of India&apos;s most celebrated vocalists — her voice, rich in texture and emotion, carries both the weight of tradition and the lightness of innovation.
             </p>
             <p className="text-sm text-[#9B7070] leading-relaxed">
-              Born and raised in Mumbai, Ketaki began her musical journey at the age of eight, guided by the legendary Pandit R. Sharma. Over two decades of dedicated practice have taken her to stages across India, Europe, Southeast Asia, and North America.
+              Born and raised in Pune, Ketaki began her musical journey at the age of eight, guided by the legendary Pandit R. Sharma. Over two decades of dedicated practice have taken her to stages across India, Europe, Southeast Asia, and North America.
             </p>
             <p className="text-sm text-[#9B7070] leading-relaxed">
               She is equally revered as an educator, having mentored hundreds of students through her academy, Swaranjali. Ketaki believes that music is a living tradition — one that must be preserved with reverence and shared with courage.

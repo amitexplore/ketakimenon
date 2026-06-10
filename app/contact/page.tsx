@@ -4,22 +4,22 @@ const contactCards = [
   {
     symbol: '✉',
     label: 'Email',
-    value: 'info@ketakimenon.com',
+    value: 'ketaki10nk@gmail.com',
     sub: 'Bookings & general enquiries',
-    href: 'mailto:info@ketakimenon.com',
+    href: 'mailto:ketaki10nk@gmail.com',
   },
   {
     symbol: '✆',
     label: 'Phone',
-    value: '+91 98765 43210',
+    value: '+91 9665924870',
     sub: 'Monday – Saturday · 10am – 6pm IST',
-    href: 'tel:+919876543210',
+    href: 'tel:+919665924870',
   },
   {
     symbol: '◈',
     label: 'Studio',
     value: 'Swaranjali Music Academy',
-    sub: 'Bandra West, Mumbai – 400050',
+    sub: 'Pune, India',
     href: '#',
   },
   {
@@ -32,7 +32,7 @@ const contactCards = [
 ];
 
 const socials = [
-  { name: 'Instagram',   handle: '@ketakimenon',            href: '#' },
+  { name: 'Instagram',   handle: '@ketakimenon',            href: 'https://www.instagram.com/ketakimenon?igsh=MWVtOXIzdmNjanYxMQ==' },
   { name: 'YouTube',     handle: 'Ketaki Menon Music',      href: '#' },
   { name: 'Facebook',    handle: 'Ketaki Menon Official',   href: '#' },
   { name: 'Spotify',     handle: 'Ketaki Menon',            href: '#' },
@@ -175,6 +175,8 @@ export default function ContactPage() {
                   <a
                     key={name}
                     href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-between p-4 border border-[#C9A84C]/20 bg-white hover:border-[#6B1A1A] hover:bg-[#F9F0F0] transition-all group"
                   >
                     <div>

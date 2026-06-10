@@ -66,6 +66,8 @@ export default function AudiosPage() {
             <a
               key={name}
               href="#"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 px-6 py-3 border border-[#C9A84C]/30 bg-white hover:border-[#6B1A1A] hover:bg-[#6B1A1A]/4 transition-all text-sm text-[#6B1A1A] hover:text-[#6B1A1A]"
             >
               <span className="text-[#C9A84C]">{icon}</span>

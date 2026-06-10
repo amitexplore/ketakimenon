@@ -101,7 +101,9 @@ export default function GalleryPage() {
             Behind-the-scenes moments, rehearsals, and updates — every day.
           </p>
           <a
-            href="#"
+            href="https://www.instagram.com/ketakimenon?igsh=MWVtOXIzdmNjanYxMQ=="
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-9 py-3 border border-[#6B1A1A] text-[#6B1A1A] text-[10px] tracking-[0.35em] uppercase hover:bg-[#6B1A1A] hover:text-[#FAF6EE] transition-all font-semibold"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
