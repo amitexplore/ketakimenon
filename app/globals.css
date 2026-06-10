@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Maroon family */
+  --maroon-deep:   #1A0404;
+  --maroon:        #6B1A1A;
+  --maroon-mid:    #8B2E2E;
+  --maroon-light:  #B04040;
+  --maroon-blush:  #F9F0F0;
+  --maroon-tint:   #F4E8E8;
+
+  /* Gold family */
+  --gold:          #C9A84C;
+  --gold-light:    #E8C97A;
+  --gold-dark:     #9A7A2E;
+  --gold-pale:     #FDF6E0;
+
+  /* Ivory family */
+  --ivory:         #FAF6EE;
+  --ivory-dark:    #F0E6D0;
+  --ivory-mid:     #E8DCC8;
+
+  /* Text */
+  --text-heading:  #1A0505;
+  --text-body:     #3D1010;
+  --text-muted:    #9B7070;
+  --text-subtle:   #C4A8A8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-maroon:       var(--maroon);
+  --color-maroon-deep:  var(--maroon-deep);
+  --color-maroon-mid:   var(--maroon-mid);
+  --color-gold:         var(--gold);
+  --color-gold-light:   var(--gold-light);
+  --color-ivory:        var(--ivory);
+  --color-ivory-dark:   var(--ivory-dark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ─── Typography ─── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ivory);
+  color: var(--text-body);
+  font-family: var(--font-raleway), 'Raleway', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5,
+.font-display {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Ornament helpers ─── */
+.ornament-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--gold);
+}
+.ornament-center::before,
+.ornament-center::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.ornament-center::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* Corner-bracket frame for hero */
+.frame-corners {
+  position: relative;
+}
+.frame-corners::before,
+.frame-corners::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(201, 168, 76, 0.55);
+  border-style: solid;
+}
+.frame-corners::before {
+  top: 0; left: 0;
+  border-width: 1px 0 0 1px;
+}
+.frame-corners::after {
+  bottom: 0; right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* Subtle diagonal texture for dark sections */
+.texture-overlay {
+  background-image:
+    linear-gradient(45deg, rgba(201,168,76,0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(201,168,76,0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(201,168,76,0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(201,168,76,0.03) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Gold text gradient */
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Maroon text gradient for display headings */
+.maroon-display {
+  background: linear-gradient(160deg, var(--maroon-mid), var(--maroon-deep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Premium card */
+.card-premium {
+  background: #FFFFFF;
+  border: 1px solid rgba(107, 26, 26, 0.12);
+  box-shadow: 0 1px 4px rgba(107,26,26,0.06), inset 0 0 0 3px rgba(201,168,76,0.04);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.card-premium:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow: 0 6px 24px rgba(107,26,26,0.10), inset 0 0 0 3px rgba(201,168,76,0.08);
+  transform: translateY(-2px);
+}
+
+/* Scroll indicator animation */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); }
+}
+.scroll-indicator {
+  animation: scrollPulse 2s ease-in-out infinite;
 }
