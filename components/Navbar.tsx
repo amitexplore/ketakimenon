@@ -1,20 +1,19 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { useNavigation, type PageId } from './NavigationProvider';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/videos', label: 'Videos' },
-  { href: '/audios', label: 'Audios' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/services', label: 'Services' },
-  { href: '/contact', label: 'Contact' },
+const navLinks: { id: PageId; label: string }[] = [
+  { id: 'home',     label: 'Home'     },
+  { id: 'about',    label: 'About'    },
+  { id: 'videos',   label: 'Videos'   },
+  { id: 'audios',   label: 'Audios'   },
+  { id: 'gallery',  label: 'Gallery'  },
+  { id: 'services', label: 'Services' },
+  { id: 'contact',  label: 'Contact'  },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const { page, navigate } = useNavigation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,6 +22,11 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const go = (id: PageId) => {
+    navigate(id);
+    setMenuOpen(false);
+  };
 
   return (
     <nav
@@ -37,37 +41,39 @@ export default function Navbar() {
 
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex flex-col leading-tight group">
+        <button onClick={() => go('home')} className="flex flex-col leading-tight group text-left">
           <span
             className="text-xl font-bold tracking-[0.15em] uppercase text-[#6B1A1A] group-hover:text-[#8B2E2E] transition-colors"
             style={{ fontFamily: 'var(--font-cormorant), serif' }}
           >
             Ketaki Menon
           </span>
-          <span className="text-[10px] tracking-[0.35em] text-[#C9A84C] uppercase font-light"
-            style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>
+          <span
+            className="text-[10px] tracking-[0.35em] text-[#C9A84C] uppercase font-light"
+            style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
+          >
             Vocalist · Educator
           </span>
-        </Link>
+        </button>
 
         {/* Desktop nav */}
         <ul className="hidden md:flex gap-8 items-center">
-          {navLinks.map(({ href, label }) => (
-            <li key={href} className="relative">
-              <Link
-                href={href}
+          {navLinks.map(({ id, label }) => (
+            <li key={id} className="relative">
+              <button
+                onClick={() => go(id)}
                 className={`text-[11px] tracking-[0.25em] uppercase font-medium transition-colors duration-200 pb-0.5 ${
-                  pathname === href
+                  page === id
                     ? 'text-[#C9A84C]'
                     : 'text-[#6B1A1A] hover:text-[#C9A84C]'
                 }`}
                 style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
               >
                 {label}
-                {pathname === href && (
+                {page === id && (
                   <span className="absolute -bottom-1 left-0 right-0 h-px bg-[#C9A84C]" />
                 )}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
@@ -88,25 +94,24 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu — always rendered, animated with max-height */}
+      {/* Mobile menu — animated with max-height */}
       <div
         className={`md:hidden bg-[#FAF6EE] border-t border-[#C9A84C]/20 px-6 overflow-hidden transition-all duration-300 ease-in-out ${
           menuOpen ? 'max-h-96 py-5 opacity-100' : 'max-h-0 py-0 opacity-0'
         }`}
       >
         <ul className="flex flex-col gap-5">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                onClick={() => setMenuOpen(false)}
+          {navLinks.map(({ id, label }) => (
+            <li key={id}>
+              <button
+                onClick={() => go(id)}
                 className={`block text-[11px] tracking-[0.3em] uppercase font-medium transition-colors ${
-                  pathname === href ? 'text-[#C9A84C]' : 'text-[#6B1A1A] hover:text-[#C9A84C]'
+                  page === id ? 'text-[#C9A84C]' : 'text-[#6B1A1A] hover:text-[#C9A84C]'
                 }`}
                 style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
               >
                 {label}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>

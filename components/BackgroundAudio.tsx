@@ -2,20 +2,38 @@
 import { useEffect, useRef, useState } from 'react';
 
 // #t=26 is an HTML5 media fragment — tells the browser's own engine to start at 26s.
-// This works at the network level before any JS runs, and is reliable on iOS/Android.
 const SRC = '/Audio/Benaam%20Si%20Khwaishe.mp3#t=26';
 const START = 26;
 
-export default function BackgroundAudio() {
+interface Props {
+  /** When false the audio is paused (e.g. on non-music pages). */
+  active: boolean;
+}
+
+export default function BackgroundAudio({ active }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [visible, setVisible] = useState(false);
+  const startedRef = useRef(false);
+
+  // Pause / resume whenever the active page changes
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (!active) {
+      audio.pause();
+      setPlaying(false);
+    } else if (startedRef.current) {
+      // Already unlocked by a prior user gesture — resume silently
+      audio.play().then(() => setPlaying(true)).catch(() => {});
+    }
+    // If active but never started, gesture listeners below handle first play
+  }, [active]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    let started = false;
     let listenersAdded = false;
 
     const removeListeners = () => {
@@ -34,25 +52,22 @@ export default function BackgroundAudio() {
       document.addEventListener('keydown',     tryPlay);
     };
 
-    // Called from a user-gesture — currentTime assignment is always honoured here.
+    // Called inside a user-gesture — currentTime assignment is always honoured here.
     const tryPlay = () => {
-      if (started) return;
-      // JS fallback: set start time inside the gesture handler
+      if (startedRef.current) return;
       if (audio.currentTime < START - 1) audio.currentTime = START;
       audio.play()
-        .then(() => { started = true; setPlaying(true); removeListeners(); })
+        .then(() => { startedRef.current = true; setPlaying(true); removeListeners(); })
         .catch(() => {});
     };
 
     const attemptAutoplay = () => {
-      // JS fallback alongside the #t= fragment
       if (audio.currentTime < START - 1) audio.currentTime = START;
       audio.play()
-        .then(() => { started = true; setPlaying(true); })
+        .then(() => { startedRef.current = true; setPlaying(true); })
         .catch(addListeners);
     };
 
-    // Wait until the browser knows the duration before attempting anything
     if (audio.readyState >= 1) {
       attemptAutoplay();
     } else {
@@ -64,7 +79,6 @@ export default function BackgroundAudio() {
       clearTimeout(t);
       removeListeners();
       audio.removeEventListener('loadedmetadata', attemptAutoplay);
-      audio.pause();
     };
   }, []);
 
@@ -75,7 +89,7 @@ export default function BackgroundAudio() {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
+      audio.play().then(() => { startedRef.current = true; setPlaying(true); }).catch(() => {});
     }
   };
 

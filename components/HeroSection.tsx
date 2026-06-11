@@ -1,7 +1,7 @@
 'use client';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import OrnamentDivider from './OrnamentDivider';
+import type { PageId } from './NavigationProvider';
 
 const KEYFRAMES = `
   @keyframes fadeUp {
@@ -18,7 +18,7 @@ const KEYFRAMES = `
   }
 `;
 
-export default function HeroSection() {
+export default function HeroSection({ onNavigate }: { onNavigate: (p: PageId) => void }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -101,18 +101,18 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
               style={up(1.8)}
             >
-              <Link
-                href="/about"
+              <button
+                onClick={() => onNavigate('about')}
                 className="px-9 py-3.5 bg-[#C9A84C] text-[#1A0404] text-[11px] font-semibold tracking-[0.3em] uppercase hover:bg-[#E8C97A] transition-colors"
               >
                 Discover Her Story
-              </Link>
-              <Link
-                href="/contact"
+              </button>
+              <button
+                onClick={() => onNavigate('contact')}
                 className="px-9 py-3.5 border border-[#C9A84C]/60 text-[#C9A84C] text-[11px] font-semibold tracking-[0.3em] uppercase hover:border-[#C9A84C] hover:bg-[#C9A84C]/8 transition-all"
               >
                 Book a Performance
-              </Link>
+              </button>
             </div>
           </div>
         </div>

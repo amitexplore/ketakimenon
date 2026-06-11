@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Raleway } from 'next/font/google';
 import './globals.css';
+import { NavigationProvider } from '@/components/NavigationProvider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -21,7 +22,7 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: 'Ketaki Menon | Vocalist & Music Artist',
-  description: 'Official website of Ketaki Menon – Hindustani Classical Vocalist and Music Educator.',
+  description: 'Official website of Ketaki Menon – Hindustani Classical Vocalist and Music Educator based in Pune, performing across India and the world.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -33,9 +34,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://static.cdninstagram.com" />
       </head>
       <body className="bg-[#FAF6EE] text-[#3D1010] min-h-screen">
-        <Navbar />
-        <main className="pt-20">{children}</main>
-        <Footer />
+        <NavigationProvider>
+          <Navbar />
+          <main className="pt-20">{children}</main>
+          <Footer />
+        </NavigationProvider>
       </body>
     </html>
   );

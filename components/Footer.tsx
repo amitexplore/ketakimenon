@@ -1,13 +1,14 @@
-import Link from 'next/link';
+'use client';
+import { useNavigation, type PageId } from './NavigationProvider';
 
-const quickLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/videos', label: 'Videos' },
-  { href: '/audios', label: 'Audios' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/services', label: 'Services' },
-  { href: '/contact', label: 'Contact' },
+const quickLinks: { id: PageId; label: string }[] = [
+  { id: 'home',     label: 'Home'     },
+  { id: 'about',    label: 'About'    },
+  { id: 'videos',   label: 'Videos'   },
+  { id: 'audios',   label: 'Audios'   },
+  { id: 'gallery',  label: 'Gallery'  },
+  { id: 'services', label: 'Services' },
+  { id: 'contact',  label: 'Contact'  },
 ];
 
 const socials = [
@@ -26,14 +27,14 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { navigate } = useNavigation();
+
   return (
     <footer className="bg-[#1A0404] text-[#F0E6D0]">
-      {/* Gold top bar */}
       <div className="h-[2px] bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
           <div className="space-y-4">
             <div>
               <h3
@@ -42,9 +43,7 @@ export default function Footer() {
               >
                 Ketaki Menon
               </h3>
-              <p className="text-[10px] tracking-[0.35em] text-[#C9A84C] uppercase">
-                Vocalist · Educator
-              </p>
+              <p className="text-[10px] tracking-[0.35em] text-[#C9A84C] uppercase">Vocalist · Educator</p>
             </div>
             <div className="h-px w-10 bg-[#C9A84C]/40" />
             <p className="text-sm text-[#C4A8A8] leading-relaxed">
@@ -53,30 +52,24 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-6">
-              Explore
-            </h4>
+            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-6">Explore</h4>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
-              {quickLinks.map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
+              {quickLinks.map(({ id, label }) => (
+                <li key={id}>
+                  <button
+                    onClick={() => navigate(id)}
                     className="text-sm text-[#C4A8A8] hover:text-[#E8C97A] transition-colors tracking-wide"
                   >
                     {label}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Connect */}
           <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-6">
-              Connect
-            </h4>
+            <h4 className="text-[10px] tracking-[0.3em] uppercase text-[#C9A84C] mb-6">Connect</h4>
             <div className="flex gap-4 mb-6">
               {socials.map(({ name, href, icon }) => (
                 <a
@@ -99,7 +92,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom rule */}
         <div className="mt-14 pt-6 border-t border-[#C9A84C]/15 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[11px] text-[#9B7070] tracking-widest">
             © {new Date().getFullYear()} Ketaki Menon. All rights reserved.
