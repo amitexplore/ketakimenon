@@ -1,5 +1,5 @@
 import OrnamentDivider from '@/components/OrnamentDivider';
-import VideoGrid from '@/components/VideoGrid';
+import InstagramGrid from '@/components/InstagramGrid';
 
 export default function VideosPage() {
   return (
@@ -21,7 +21,7 @@ export default function VideosPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <VideoGrid />
+        <InstagramGrid />
 
         {/* YouTube CTA */}
         <div className="mt-16 bg-[#F4E8E8] border border-[#C9A84C]/20 p-10 text-center">
