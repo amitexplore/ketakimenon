@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import OrnamentDivider from '@/components/OrnamentDivider';
+import BackgroundAudio from '@/components/BackgroundAudio';
 
 const timeline = [
-  { year: '1992', event: 'Born in Pune into a family with deep roots in Hindustani classical music.' },
-  { year: '2000', event: 'Commenced formal training in Hindustani Classical and Light Music Tradition under Pandit R. Sharma.' },
-  { year: '2008', event: 'Performed at the Sawai Gandharva Bhimsen Mahotsav — one of India\'s most prestigious classical music festivals.' },
-  { year: '2012', event: 'Completed Visharad (Graduate) from Akhil Bharatiya Gandharva Mahavidyalaya with distinction.' },
-  { year: '2015', event: 'Debut album "Raag Prakaash" released to national acclaim.' },
-  { year: '2018', event: 'Founded Swaranjali Music Academy in Pune, now home to 500+ students.' },
-  { year: '2022', event: 'Headlined the International Music Summit in Singapore.' },
-  { year: '2024', event: 'Ongoing world tour and second album in production.' },
+  { year: '1987', event: 'Born in Dhule into a family with deep interests in Music and professionally inclined.' },
+  { year: '1998', event: 'Commenced formal training in Hindustani Classical and Light Music with Shekhar Rudra in Dhule.' },
+  { year: '2002', event: 'Completed Sangeet Visharad from Akhil Bharatiya Gandharva Mahavidyalay.' },
+  { year: '2003', event: 'Started performing professionally on stage for programs and TV Shows.' },
+  { year: '2014', event: 'Performed and won the title of Pune Idol.' },
+  { year: '2015', event: 'Went on a tour to UK for performances on stage and embassy.' },
+  { year: '2016', event: 'Started taking guidance from renowned music director Pt Hridaynath Mangeshkar.' },
+  { year: '2020 onwards', event: 'Performed with renowned Music Director Ashok Patki, renowned singer Swapnil Bandodkar, Bela Shende and Saleel Kulkarni.' },
 ];
 
 const accolades = [
@@ -27,6 +28,8 @@ const profile = [
 export default function AboutPage() {
   return (
     <div>
+
+      <BackgroundAudio />
 
       {/* ── PAGE HEADER ─── */}
       <div className="bg-[#6B1A1A] py-20 px-6 text-center texture-overlay">
@@ -75,13 +78,16 @@ export default function AboutPage() {
               className="text-xl text-[#3D1010] leading-relaxed"
               style={{ fontFamily: 'var(--font-cormorant), serif', fontStyle: 'italic' }}
             >
-              Ketaki Menon is one of India&apos;s most celebrated vocalists — her voice, rich in texture and emotion, carries both the weight of tradition and the lightness of innovation.
+              Ketaki Menon is a versatile vocalist with over two decades of experience in music performance, education, and cultural programs.
             </p>
             <p className="text-sm text-[#9B7070] leading-relaxed">
-              Born and raised in Pune, Ketaki began her musical journey at the age of eight, guided by the legendary Pandit R. Sharma. Over two decades of dedicated practice have taken her to stages across India, Europe, Southeast Asia, and North America.
+              Known for her expressive singing and strong stage presence, she has performed across a wide range of musical genres, connecting with audiences through both classical foundations and contemporary interpretations. Over the years, Ketaki has participated in numerous concerts, cultural events, private performances, and musical productions, earning appreciation for her dedication to the art of music and her ability to engage listeners of all ages.
             </p>
             <p className="text-sm text-[#9B7070] leading-relaxed">
-              She is equally revered as an educator, having mentored hundreds of students through her academy, Swaranjali. Ketaki believes that music is a living tradition — one that must be preserved with reverence and shared with courage.
+              Alongside her performing career, she is a passionate music educator who has trained and mentored aspiring singers, helping them develop confidence, technique, and a deeper understanding of music. Through her teaching, she continues to inspire students to explore and nurture their musical potential.
+            </p>
+            <p className="text-sm text-[#9B7070] leading-relaxed">
+              Today, Ketaki remains committed to sharing the joy of music through performances, workshops, and personalized training, bringing together experience, artistry, and a lifelong passion for singing.
             </p>
 
             {/* Profile grid */}

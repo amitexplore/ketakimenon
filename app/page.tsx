@@ -1,26 +1,29 @@
 import Link from 'next/link';
 import OrnamentDivider from '@/components/OrnamentDivider';
 import HeroSection from '@/components/HeroSection';
+import BackgroundAudio from '@/components/BackgroundAudio';
 
 const stats = [
-  { count: '200+', label: 'Live Performances' },
+  { count: '1000+', label: 'Live Performances' },
   { count: '50+',  label: 'Recordings'        },
-  { count: '15+',  label: 'Awards'             },
-  { count: '500+', label: 'Students Trained'   },
+  { count: '10+',  label: 'Awards'             },
+  { count: '100+', label: 'Students Trained'   },
 ];
 
 const navCards = [
   { href: '/about',    title: 'About',    desc: 'Her journey, gharana & musical philosophy.',  symbol: '𝄞' },
   { href: '/videos',   title: 'Videos',   desc: 'Performances, concerts, and studio sessions.', symbol: '▶' },
   { href: '/audios',   title: 'Audios',   desc: 'Albums, singles and live recordings.',         symbol: '♫' },
-  { href: '/services', title: 'Services', desc: 'Vocal training, events & collaborations.',     symbol: '✦' },
   { href: '/gallery',  title: 'Gallery',  desc: 'Moments from concerts and life in music.',     symbol: '◈' },
+  { href: '/services', title: 'Services', desc: 'Vocal training, events & collaborations.',     symbol: '✦' },
   { href: '/contact',  title: 'Contact',  desc: 'Bookings, enquiries and media.',               symbol: '✉' },
 ];
 
 export default function HomePage() {
   return (
     <div>
+
+      <BackgroundAudio />
 
       {/* ── HERO ─────────────────────────────────────── */}
       <HeroSection />

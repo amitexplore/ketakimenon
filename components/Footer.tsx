@@ -5,8 +5,8 @@ const quickLinks = [
   { href: '/about', label: 'About' },
   { href: '/videos', label: 'Videos' },
   { href: '/audios', label: 'Audios' },
-  { href: '/services', label: 'Services' },
   { href: '/gallery', label: 'Gallery' },
+  { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
 ];
 

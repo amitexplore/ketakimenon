@@ -1,20 +1,11 @@
 import OrnamentDivider from '@/components/OrnamentDivider';
 
-const categories = ['All', 'Concerts', 'Studio', 'Events', 'Travel', 'Awards'];
-
 const photos = [
-  { id: 1,  title: 'Nehru Centre Concert',         category: 'Concerts', year: '2024', emoji: '🎭', aspect: 'aspect-[3/4]'  },
-  { id: 2,  title: 'Recording Session',             category: 'Studio',   year: '2024', emoji: '🎙️', aspect: 'aspect-square' },
-  { id: 3,  title: 'Singapore Summit',              category: 'Events',   year: '2023', emoji: '🌏', aspect: 'aspect-[4/3]'  },
-  { id: 4,  title: 'Sawai Gandharva Festival',      category: 'Concerts', year: '2023', emoji: '🎵', aspect: 'aspect-square' },
-  { id: 5,  title: 'Swaranjali Academy',            category: 'Events',   year: '2023', emoji: '🎓', aspect: 'aspect-[3/4]'  },
-  { id: 6,  title: 'IndieMusic Award Ceremony',     category: 'Awards',   year: '2022', emoji: '🏆', aspect: 'aspect-square' },
-  { id: 7,  title: 'Varanasi Ghat Morning',         category: 'Travel',   year: '2022', emoji: '🕌', aspect: 'aspect-[4/3]'  },
-  { id: 8,  title: 'London Barbican Centre',        category: 'Concerts', year: '2022', emoji: '🎪', aspect: 'aspect-square' },
-  { id: 9,  title: 'Naadbrahma Album Launch',       category: 'Events',   year: '2021', emoji: '💿', aspect: 'aspect-[3/4]'  },
-  { id: 10, title: 'Studio Portraits',              category: 'Studio',   year: '2021', emoji: '📸', aspect: 'aspect-square' },
-  { id: 11, title: 'Jaipur Literary Festival',      category: 'Events',   year: '2020', emoji: '📖', aspect: 'aspect-[4/3]'  },
-  { id: 12, title: 'Cultural Ambassador Ceremony',  category: 'Awards',   year: '2020', emoji: '🎖️', aspect: 'aspect-square' },
+  '/photos/FB_IMG_1509544845056.jpg',
+  '/photos/IMG_0286.JPG',
+  '/photos/IMG_3740.jpg',
+  '/photos/Open%20fa8d5816-dcfc-4e2f-9dbb-14e6cb61918b.png',
+  '/photos/Portrait%201.jpeg',
 ];
 
 export default function GalleryPage() {
@@ -31,59 +22,27 @@ export default function GalleryPage() {
           Photo Gallery
         </h1>
         <OrnamentDivider light />
-        <p className="text-[#C4A8A8] text-sm mt-6 max-w-md mx-auto">
-          A visual journey through concerts, recordings, events, and life on the road.
+        <p className="text-[#C4A8A8] text-sm mt-6 whitespace-nowrap">
+          A visual journey through concerts, recordings, events and musical life.
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-20">
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-3 justify-center mb-14">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`px-6 py-2 text-[10px] tracking-[0.3em] uppercase border transition-all ${
-                cat === 'All'
-                  ? 'bg-[#6B1A1A] text-[#FAF6EE] border-[#6B1A1A]'
-                  : 'border-[#C9A84C]/35 text-[#6B1A1A] hover:border-[#6B1A1A] hover:bg-[#6B1A1A]/5'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Masonry grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 [column-gap:16px]">
-          {photos.map(({ id, title, category, year, emoji, aspect }) => (
+        {/* Uniform grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {photos.map((src) => (
             <div
-              key={id}
-              className="break-inside-avoid mb-4 card-premium overflow-hidden cursor-pointer group"
+              key={src}
+              className="card-premium overflow-hidden aspect-square"
             >
-              {/* Placeholder image */}
-              <div
-                className={`w-full bg-gradient-to-br from-[#2D0808] to-[#8B2E2E] flex items-center justify-center relative overflow-hidden ${aspect}`}
-              >
-                <span className="text-5xl opacity-20">{emoji}</span>
-
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-[#1A0404]/0 group-hover:bg-[#1A0404]/70 transition-colors duration-300 flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100">
-                  <p className="text-[9px] tracking-[0.35em] text-[#C9A84C] uppercase mb-1">{category}</p>
-                  <p className="text-sm font-semibold text-[#FAF6EE] leading-snug"
-                    style={{ fontFamily: 'var(--font-cormorant), serif' }}
-                  >
-                    {title}
-                  </p>
-                  <p className="text-[#C4A8A8] text-xs mt-1">{year}</p>
-                </div>
-              </div>
-
-              {/* Mobile caption */}
-              <div className="px-3 py-2.5 md:hidden bg-white">
-                <p className="text-xs font-semibold text-[#6B1A1A]">{title}</p>
-                <p className="text-[10px] text-[#C9A84C]">{year}</p>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt=""
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
