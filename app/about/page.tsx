@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-[4/5] border border-[#C9A84C]/25 overflow-hidden relative">
               <Image
-                src="/photos/portrait 1.jpeg"
+                src="/photos/Portrait%201.jpeg"
                 alt="Ketaki Menon"
                 fill
                 className="object-cover object-top"
