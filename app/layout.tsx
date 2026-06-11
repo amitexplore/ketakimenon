@@ -22,7 +22,7 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: 'Ketaki Menon | Vocalist & Music Artist',
-  description: 'Official website of Ketaki Menon – Hindustani Classical Vocalist and Music Educator based in Pune, performing across India and the world.',
+  description: 'Official website of Ketaki Menon – Vocalist and Performer based in Pune, performing across India and the world.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
