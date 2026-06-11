@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
-const SRC = '/Audio/Benaam%20Si%20Khwaishe.mp3';
+// #t=26 is an HTML5 media fragment — tells the browser's own engine to start at 26s.
+// This works at the network level before any JS runs, and is reliable on iOS/Android.
+const SRC = '/Audio/Benaam%20Si%20Khwaishe.mp3#t=26';
 const START = 26;
 
 export default function BackgroundAudio() {
@@ -14,6 +16,7 @@ export default function BackgroundAudio() {
     if (!audio) return;
 
     let started = false;
+    let listenersAdded = false;
 
     const removeListeners = () => {
       document.removeEventListener('click',       tryPlay);
@@ -22,34 +25,34 @@ export default function BackgroundAudio() {
       document.removeEventListener('keydown',     tryPlay);
     };
 
-    // Always set currentTime = START right before play().
-    // On mobile (iOS/Android), currentTime assignment is only honoured
-    // inside a user-gesture handler, so we do it here every time.
+    const addListeners = () => {
+      if (listenersAdded) return;
+      listenersAdded = true;
+      document.addEventListener('click',       tryPlay);
+      document.addEventListener('pointerdown', tryPlay);
+      document.addEventListener('touchstart',  tryPlay, { passive: true });
+      document.addEventListener('keydown',     tryPlay);
+    };
+
+    // Called from a user-gesture — currentTime assignment is always honoured here.
     const tryPlay = () => {
       if (started) return;
-      audio.currentTime = START;
+      // JS fallback: set start time inside the gesture handler
+      if (audio.currentTime < START - 1) audio.currentTime = START;
       audio.play()
         .then(() => { started = true; setPlaying(true); removeListeners(); })
         .catch(() => {});
     };
 
-    // attemptAutoplay: wait for metadata, set time, then try playing.
-    // On desktop this usually succeeds; on mobile the .catch registers
-    // gesture listeners instead.
     const attemptAutoplay = () => {
-      audio.currentTime = START;
+      // JS fallback alongside the #t= fragment
+      if (audio.currentTime < START - 1) audio.currentTime = START;
       audio.play()
         .then(() => { started = true; setPlaying(true); })
-        .catch(() => {
-          document.addEventListener('click',       tryPlay);
-          document.addEventListener('pointerdown', tryPlay);
-          document.addEventListener('touchstart',  tryPlay, { passive: true });
-          document.addEventListener('keydown',     tryPlay);
-        });
+        .catch(addListeners);
     };
 
-    // Wait until at least metadata is available before seeking/playing.
-    // readyState >= 1 means HAVE_METADATA (duration & seek work).
+    // Wait until the browser knows the duration before attempting anything
     if (audio.readyState >= 1) {
       attemptAutoplay();
     } else {
@@ -72,8 +75,6 @@ export default function BackgroundAudio() {
       audio.pause();
       setPlaying(false);
     } else {
-      // On manual resume, restore start time only if track hasn't progressed
-      if (audio.currentTime < START) audio.currentTime = START;
       audio.play().then(() => setPlaying(true)).catch(() => {});
     }
   };
