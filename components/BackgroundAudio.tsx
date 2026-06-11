@@ -10,18 +10,30 @@ export default function BackgroundAudio() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Start 26 seconds in
     audio.currentTime = 26;
 
-    // Try autoplay — most browsers will block this until interaction
+    const startAudio = () => {
+      if (audio.paused) {
+        audio.play().then(() => setPlaying(true)).catch(() => {});
+      }
+      // Remove listeners after first successful interaction
+      events.forEach(e => window.removeEventListener(e, startAudio));
+    };
+
+    const events = ['click', 'touchstart', 'keydown', 'scroll'];
+
+    // Try autoplay immediately — works on some browsers/returning visitors
     audio.play()
       .then(() => setPlaying(true))
-      .catch(() => setPlaying(false));
+      .catch(() => {
+        // Blocked — wait for first user interaction
+        events.forEach(e => window.addEventListener(e, startAudio, { once: true, passive: true }));
+      });
 
-    // Show the button after a short delay
     const t = setTimeout(() => setVisible(true), 800);
     return () => {
       clearTimeout(t);
+      events.forEach(e => window.removeEventListener(e, startAudio));
       audio.pause();
     };
   }, []);
