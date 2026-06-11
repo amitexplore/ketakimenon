@@ -11,29 +11,41 @@ export default function BackgroundAudio() {
     if (!audio) return;
 
     audio.currentTime = 26;
+    let started = false;
 
-    const startAudio = () => {
-      if (audio.paused) {
-        audio.play().then(() => setPlaying(true)).catch(() => {});
-      }
-      // Remove listeners after first successful interaction
-      events.forEach(e => window.removeEventListener(e, startAudio));
+    const removeListeners = () => {
+      document.removeEventListener('click',      tryPlay);
+      document.removeEventListener('pointerdown', tryPlay);
+      document.removeEventListener('touchstart',  tryPlay);
+      document.removeEventListener('keydown',     tryPlay);
     };
 
-    const events = ['click', 'touchstart', 'keydown', 'scroll'];
+    const tryPlay = () => {
+      if (started) return;
+      audio.play()
+        .then(() => {
+          started = true;
+          setPlaying(true);
+          removeListeners();
+        })
+        .catch(() => {});
+    };
 
-    // Try autoplay immediately — works on some browsers/returning visitors
+    // Attempt immediate autoplay first
     audio.play()
-      .then(() => setPlaying(true))
+      .then(() => { started = true; setPlaying(true); })
       .catch(() => {
-        // Blocked — wait for first user interaction
-        events.forEach(e => window.addEventListener(e, startAudio, { once: true, passive: true }));
+        // Blocked — attach to real user-gesture events (scroll is NOT a gesture in browsers)
+        document.addEventListener('click',       tryPlay);
+        document.addEventListener('pointerdown', tryPlay);
+        document.addEventListener('touchstart',  tryPlay, { passive: true });
+        document.addEventListener('keydown',     tryPlay);
       });
 
     const t = setTimeout(() => setVisible(true), 800);
     return () => {
       clearTimeout(t);
-      events.forEach(e => window.removeEventListener(e, startAudio));
+      removeListeners();
       audio.pause();
     };
   }, []);
