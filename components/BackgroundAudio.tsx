@@ -1,6 +1,9 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
+const SRC = '/Audio/Benaam%20Si%20Khwaishe.mp3';
+const START = 26;
+
 export default function BackgroundAudio() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -12,20 +15,6 @@ export default function BackgroundAudio() {
 
     let started = false;
 
-    const START_TIME = 26;
-
-    const setStartTime = () => {
-      audio.currentTime = START_TIME;
-    };
-
-    // Set immediately if metadata already loaded (desktop)
-    if (audio.readyState >= 1) {
-      setStartTime();
-    } else {
-      // On mobile, metadata loads later — set time once it's ready
-      audio.addEventListener('loadedmetadata', setStartTime, { once: true });
-    }
-
     const removeListeners = () => {
       document.removeEventListener('click',       tryPlay);
       document.removeEventListener('pointerdown', tryPlay);
@@ -33,35 +22,45 @@ export default function BackgroundAudio() {
       document.removeEventListener('keydown',     tryPlay);
     };
 
+    // Always set currentTime = START right before play().
+    // On mobile (iOS/Android), currentTime assignment is only honoured
+    // inside a user-gesture handler, so we do it here every time.
     const tryPlay = () => {
       if (started) return;
-      // Ensure start time is honoured even if metadata only just loaded
-      if (audio.currentTime < START_TIME - 1) audio.currentTime = START_TIME;
+      audio.currentTime = START;
       audio.play()
-        .then(() => {
-          started = true;
-          setPlaying(true);
-          removeListeners();
-        })
+        .then(() => { started = true; setPlaying(true); removeListeners(); })
         .catch(() => {});
     };
 
-    // Attempt immediate autoplay first
-    audio.play()
-      .then(() => { started = true; setPlaying(true); })
-      .catch(() => {
-        // Blocked — wait for real user-gesture events
-        document.addEventListener('click',       tryPlay);
-        document.addEventListener('pointerdown', tryPlay);
-        document.addEventListener('touchstart',  tryPlay, { passive: true });
-        document.addEventListener('keydown',     tryPlay);
-      });
+    // attemptAutoplay: wait for metadata, set time, then try playing.
+    // On desktop this usually succeeds; on mobile the .catch registers
+    // gesture listeners instead.
+    const attemptAutoplay = () => {
+      audio.currentTime = START;
+      audio.play()
+        .then(() => { started = true; setPlaying(true); })
+        .catch(() => {
+          document.addEventListener('click',       tryPlay);
+          document.addEventListener('pointerdown', tryPlay);
+          document.addEventListener('touchstart',  tryPlay, { passive: true });
+          document.addEventListener('keydown',     tryPlay);
+        });
+    };
+
+    // Wait until at least metadata is available before seeking/playing.
+    // readyState >= 1 means HAVE_METADATA (duration & seek work).
+    if (audio.readyState >= 1) {
+      attemptAutoplay();
+    } else {
+      audio.addEventListener('loadedmetadata', attemptAutoplay, { once: true });
+    }
 
     const t = setTimeout(() => setVisible(true), 800);
     return () => {
       clearTimeout(t);
       removeListeners();
-      audio.removeEventListener('loadedmetadata', setStartTime);
+      audio.removeEventListener('loadedmetadata', attemptAutoplay);
       audio.pause();
     };
   }, []);
@@ -73,18 +72,15 @@ export default function BackgroundAudio() {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play().then(() => setPlaying(true));
+      // On manual resume, restore start time only if track hasn't progressed
+      if (audio.currentTime < START) audio.currentTime = START;
+      audio.play().then(() => setPlaying(true)).catch(() => {});
     }
   };
 
   return (
     <>
-      <audio
-        ref={audioRef}
-        src="/Audio/Benaam%20Si%20Khwaishe.mp3"
-        loop
-        preload="auto"
-      />
+      <audio ref={audioRef} src={SRC} loop preload="auto" />
 
       <button
         onClick={toggle}
