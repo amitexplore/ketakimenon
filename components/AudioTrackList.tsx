@@ -10,6 +10,13 @@ const tracks = [
   { title: 'Roz Roz Daali Daali',                 src: '/Audio/Roz%20roz%20daali%20daali.m4a' },
 ];
 
+function mimeType(src: string): string {
+  if (src.includes('.mp3')) return 'audio/mpeg';
+  if (src.includes('.m4a')) return 'audio/mp4';
+  if (src.includes('.mp4')) return 'audio/mp4';
+  return '';
+}
+
 function fmt(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
@@ -70,7 +77,7 @@ export default function AudioTrackList() {
               className="w-full h-9"
               style={{ accentColor: '#C9A84C' }}
             >
-              <source src={src} />
+              <source src={src} type={mimeType(src)} />
             </audio>
           </div>
         </div>

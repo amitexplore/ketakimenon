@@ -1,5 +1,6 @@
 'use client';
 import Script from 'next/script';
+import { useEffect } from 'react';
 
 declare global {
   interface Window {
@@ -17,6 +18,14 @@ const reels = [
 ];
 
 export default function InstagramGrid() {
+  // On first load, onLoad fires. On re-navigation (client-side routing) the script
+  // is already loaded so onLoad never fires again — we must re-process manually.
+  useEffect(() => {
+    if (window.instgrm) {
+      window.instgrm.Embeds.process();
+    }
+  }, []);
+
   return (
     <>
       <Script
