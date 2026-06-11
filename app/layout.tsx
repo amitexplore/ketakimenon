@@ -27,6 +27,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${raleway.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://www.instagram.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.instagram.com" />
+        <link rel="dns-prefetch" href="https://static.cdninstagram.com" />
+      </head>
       <body className="bg-[#FAF6EE] text-[#3D1010] min-h-screen">
         <Navbar />
         <main className="pt-20">{children}</main>

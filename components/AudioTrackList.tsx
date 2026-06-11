@@ -71,7 +71,7 @@ export default function AudioTrackList() {
             <audio
               ref={el => { audioRefs.current[i] = el; }}
               controls
-              preload="metadata"
+              preload="none"
               onLoadedMetadata={(e) => onMeta(i, e)}
               onPlay={() => onPlay(i)}
               className="w-full h-9"
