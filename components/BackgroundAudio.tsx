@@ -10,11 +10,24 @@ export default function BackgroundAudio() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.currentTime = 26;
     let started = false;
 
+    const START_TIME = 26;
+
+    const setStartTime = () => {
+      audio.currentTime = START_TIME;
+    };
+
+    // Set immediately if metadata already loaded (desktop)
+    if (audio.readyState >= 1) {
+      setStartTime();
+    } else {
+      // On mobile, metadata loads later — set time once it's ready
+      audio.addEventListener('loadedmetadata', setStartTime, { once: true });
+    }
+
     const removeListeners = () => {
-      document.removeEventListener('click',      tryPlay);
+      document.removeEventListener('click',       tryPlay);
       document.removeEventListener('pointerdown', tryPlay);
       document.removeEventListener('touchstart',  tryPlay);
       document.removeEventListener('keydown',     tryPlay);
@@ -22,6 +35,8 @@ export default function BackgroundAudio() {
 
     const tryPlay = () => {
       if (started) return;
+      // Ensure start time is honoured even if metadata only just loaded
+      if (audio.currentTime < START_TIME - 1) audio.currentTime = START_TIME;
       audio.play()
         .then(() => {
           started = true;
@@ -35,7 +50,7 @@ export default function BackgroundAudio() {
     audio.play()
       .then(() => { started = true; setPlaying(true); })
       .catch(() => {
-        // Blocked — attach to real user-gesture events (scroll is NOT a gesture in browsers)
+        // Blocked — wait for real user-gesture events
         document.addEventListener('click',       tryPlay);
         document.addEventListener('pointerdown', tryPlay);
         document.addEventListener('touchstart',  tryPlay, { passive: true });
@@ -46,6 +61,7 @@ export default function BackgroundAudio() {
     return () => {
       clearTimeout(t);
       removeListeners();
+      audio.removeEventListener('loadedmetadata', setStartTime);
       audio.pause();
     };
   }, []);
