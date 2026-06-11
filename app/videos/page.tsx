@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import OrnamentDivider from '@/components/OrnamentDivider';
 import InstagramGrid from '@/components/InstagramGrid';
+
+export const metadata: Metadata = {
+  title: 'Videos | Ketaki Menon — Live Performances & Concerts',
+  description: 'Watch Ketaki Menon perform live — concerts, stage shows, studio sessions, and musical events in India and abroad.',
+};
 
 export default function VideosPage() {
   return (
@@ -15,7 +21,7 @@ export default function VideosPage() {
           Videos
         </h1>
         <OrnamentDivider light />
-        <p className="text-[#C4A8A8] text-sm mt-6 whitespace-nowrap">
+        <p className="text-[#C4A8A8] text-sm mt-6 max-w-sm mx-auto sm:whitespace-nowrap">
           Performances, studio sessions and concerts — witness music come alive.
         </p>
       </div>

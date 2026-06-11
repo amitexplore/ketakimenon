@@ -71,17 +71,11 @@ export default function HeroSection() {
               </p>
 
               <h1
-                className="text-6xl sm:text-7xl md:text-8xl font-light text-[#FAF6EE] leading-none mb-3"
-                style={{ fontFamily: 'var(--font-cormorant), serif', fontStyle: 'italic', ...up(0.75) }}
+                className="text-6xl sm:text-7xl md:text-8xl text-[#FAF6EE] leading-none"
+                style={{ fontFamily: 'var(--font-cormorant), serif' }}
               >
-                Ketaki
-              </h1>
-
-              <h1
-                className="text-6xl sm:text-7xl md:text-8xl font-semibold text-[#FAF6EE] leading-none tracking-wide"
-                style={{ fontFamily: 'var(--font-cormorant), serif', ...up(0.95) }}
-              >
-                Menon
+                <span className="block font-light italic" style={up(0.75)}>Ketaki</span>
+                <span className="block font-semibold tracking-wide mt-1" style={up(0.95)}>Menon</span>
               </h1>
 
               <div style={{ ...fade(1.2), marginTop: '1.75rem', marginBottom: '1.75rem' }}>

@@ -88,27 +88,29 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#FAF6EE] border-t border-[#C9A84C]/20 px-6 py-5">
-          <ul className="flex flex-col gap-5">
-            {navLinks.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className={`block text-[11px] tracking-[0.3em] uppercase font-medium transition-colors ${
-                    pathname === href ? 'text-[#C9A84C]' : 'text-[#6B1A1A] hover:text-[#C9A84C]'
-                  }`}
-                  style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/* Mobile menu — always rendered, animated with max-height */}
+      <div
+        className={`md:hidden bg-[#FAF6EE] border-t border-[#C9A84C]/20 px-6 overflow-hidden transition-all duration-300 ease-in-out ${
+          menuOpen ? 'max-h-96 py-5 opacity-100' : 'max-h-0 py-0 opacity-0'
+        }`}
+      >
+        <ul className="flex flex-col gap-5">
+          {navLinks.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className={`block text-[11px] tracking-[0.3em] uppercase font-medium transition-colors ${
+                  pathname === href ? 'text-[#C9A84C]' : 'text-[#6B1A1A] hover:text-[#C9A84C]'
+                }`}
+                style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 }

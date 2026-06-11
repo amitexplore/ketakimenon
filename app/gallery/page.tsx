@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
 import OrnamentDivider from '@/components/OrnamentDivider';
+
+export const metadata: Metadata = {
+  title: 'Gallery | Ketaki Menon — Concert & Event Photography',
+  description: 'A visual journey through concerts, recordings, cultural events, and musical life with vocalist Ketaki Menon.',
+};
 
 const photos = [
   '/photos/FB_IMG_1509544845056.jpg',
@@ -34,14 +41,14 @@ export default function GalleryPage() {
           {photos.map((src) => (
             <div
               key={src}
-              className="card-premium overflow-hidden aspect-square"
+              className="card-premium overflow-hidden aspect-square relative"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={src}
                 alt=""
-                className="w-full h-full object-cover object-center"
-                loading="lazy"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
             </div>
           ))}

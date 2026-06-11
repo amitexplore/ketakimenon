@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import OrnamentDivider from '@/components/OrnamentDivider';
+
+export const metadata: Metadata = {
+  title: 'Contact | Ketaki Menon — Bookings & Enquiries',
+  description: 'Get in touch with Ketaki Menon for performance bookings, vocal training, studio recording, collaborations, or general enquiries. Based in Pune, performing worldwide.',
+};
 
 const contactCards = [
   {

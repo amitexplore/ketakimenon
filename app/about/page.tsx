@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import OrnamentDivider from '@/components/OrnamentDivider';
 import BackgroundAudio from '@/components/BackgroundAudio';
+
+export const metadata: Metadata = {
+  title: 'About | Ketaki Menon — Vocalist & Music Educator',
+  description: 'Learn about Ketaki Menon\'s journey in Hindustani Classical and Light Music — her training, milestones, performances in India and the UK, and her work as a music educator in Pune.',
+};
 
 const timeline = [
   { year: '1987', event: 'Born in Dhule into a family with deep interests in Music and professionally inclined.' },

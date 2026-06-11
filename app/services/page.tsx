@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import OrnamentDivider from '@/components/OrnamentDivider';
 import FaqAccordion from '@/components/FaqAccordion';
+
+export const metadata: Metadata = {
+  title: 'Services | Ketaki Menon — Vocal Training, Performances & Recording',
+  description: 'Book Ketaki Menon for vocal training, live performances at corporate events, weddings and private gatherings, or professional studio recording sessions.',
+};
 
 const services = [
   {
@@ -17,7 +23,6 @@ const services = [
       'Expression, Dynamics & Presentation',
       'Personalized Guidance for Every Student',
     ],
-    price: 'From ₹2,000 / session',
   },
   {
     symbol: 'II',
@@ -33,7 +38,6 @@ const services = [
       'Professional Live Musicians Available',
       'Performances Across India & Internationally',
     ],
-    price: 'Custom quote',
   },
   {
     symbol: 'III',
@@ -49,7 +53,6 @@ const services = [
       'Jingles & Digital Content',
       'Collaboration with Music Directors',
     ],
-    price: 'From ₹8,000 / hour',
   },
 ];
 
@@ -68,7 +71,7 @@ export default function ServicesPage() {
           Services Offered
         </h1>
         <OrnamentDivider light />
-        <p className="text-[#C4A8A8] text-sm mt-6 whitespace-nowrap">
+        <p className="text-[#C4A8A8] text-sm mt-6 max-w-lg mx-auto sm:whitespace-nowrap">
           House Concerts &nbsp;|&nbsp; Corporate Events &nbsp;|&nbsp; Private Gatherings &nbsp;|&nbsp; Stage Performance
         </p>
       </div>
@@ -77,7 +80,7 @@ export default function ServicesPage() {
 
         {/* Service cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-          {services.map(({ symbol, title, subtitle, desc, featuresLabel, features }) => (
+          {services.map(({ symbol, title, subtitle, desc, featuresLabel, features  }) => (
             <Link key={title} href="/contact" className="card-premium group flex flex-col p-8">
               {/* Roman numeral accent */}
               <div

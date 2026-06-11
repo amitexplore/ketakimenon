@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import OrnamentDivider from '@/components/OrnamentDivider';
 import AudioTrackList from '@/components/AudioTrackList';
+
+export const metadata: Metadata = {
+  title: 'Audios | Ketaki Menon — Listen to Recordings',
+  description: 'Listen to audio recordings by Ketaki Menon — Bollywood, Ghazal, Marathi, and devotional tracks recorded across her career.',
+};
 
 export default function AudiosPage() {
   return (
