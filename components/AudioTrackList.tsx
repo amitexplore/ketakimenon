@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 
 const tracks = [
   { title: 'Aabhalmaya Title Song',               src: '/Audio/Aabhalmaya%20Title%20Song.m4a' },
-  { title: 'Aandhi Jo Chali Teri Yaadon Ki',      src: '/Audio/Aandhi%20Jo%20Chali%20Teri%20Yaadon%20Ki.mp4' },
+  { title: 'Aandhi Jo Chali Teri Yaadon Ki',      src: '/Audio/Aandhi%20Jo%20Chali%20Teri%20Yaadon%20Ki.m4a' },
   { title: 'Benaam Si Khwaishe',                  src: '/Audio/Benaam%20Si%20Khwaishe.mp3' },
   { title: 'Kaise Bataun',                        src: '/Audio/Kaise%20bataun.mp3' },
   { title: 'Pyaar Ka Pehla Khat Likhne Mein',     src: '/Audio/Pyaar%20Ka%20Pehla%20Khat%20Likhne%20Mein.m4a' },
