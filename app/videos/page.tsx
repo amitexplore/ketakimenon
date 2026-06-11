@@ -174,7 +174,7 @@ export default function VideosPage() {
           </h3>
           <p className="text-sm text-[#9B7070] mb-7">Watch all performances and studio sessions on YouTube.</p>
           <a
-            href="#"
+            href="https://youtube.com/@ketakinaikmenon7709?si=skK5XTsXqgK8tQS4"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-3 bg-[#6B1A1A] text-[#FAF6EE] text-[10px] tracking-[0.3em] uppercase hover:bg-[#8B2E2E] transition-colors"

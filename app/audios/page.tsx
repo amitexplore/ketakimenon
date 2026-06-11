@@ -132,21 +132,21 @@ export default function AudiosPage() {
 
           <div className="border border-[#C9A84C]/20 bg-white overflow-hidden shadow-sm">
             {/* Header row */}
-            <div className="grid grid-cols-12 px-6 py-3 border-b border-[#C9A84C]/15 text-[9px] uppercase tracking-[0.3em] text-[#9B7070] bg-[#FAF6EE]">
-              <span className="col-span-1">#</span>
-              <span className="col-span-4">Title</span>
+            <div className="flex items-center md:grid md:grid-cols-12 px-6 py-3 border-b border-[#C9A84C]/15 text-[9px] uppercase tracking-[0.3em] text-[#9B7070] bg-[#FAF6EE]">
+              <span className="shrink-0 w-5 md:w-auto md:col-span-1">#</span>
+              <span className="flex-1 md:flex-none md:col-span-4">Title</span>
               <span className="col-span-4 hidden md:block">Album</span>
               <span className="col-span-2 hidden md:block">Raga</span>
-              <span className="col-span-1 text-right">Time</span>
+              <span className="shrink-0 md:col-span-1 text-right">Time</span>
             </div>
             {tracks.map(({ title, album, duration, raga }, i) => (
               <div
                 key={title}
-                className="grid grid-cols-12 px-6 py-4 items-center border-b border-[#C9A84C]/8 hover:bg-[#F9F0F0] group transition-colors cursor-pointer"
+                className="flex items-center md:grid md:grid-cols-12 px-6 py-4 border-b border-[#C9A84C]/8 hover:bg-[#F9F0F0] group transition-colors cursor-pointer"
               >
-                <span className="col-span-1 text-sm text-[#9B7070] group-hover:hidden">{i + 1}</span>
-                <span className="col-span-1 text-[#C9A84C] hidden group-hover:block">▶</span>
-                <span className="col-span-4 text-sm text-[#3D1010] group-hover:text-[#6B1A1A] transition-colors">
+                <span className="shrink-0 w-5 md:w-auto md:col-span-1 text-sm text-[#9B7070] group-hover:hidden">{i + 1}</span>
+                <span className="shrink-0 w-5 md:w-auto md:col-span-1 text-[#C9A84C] hidden group-hover:block">▶</span>
+                <span className="flex-1 md:flex-none md:col-span-4 text-sm text-[#3D1010] group-hover:text-[#6B1A1A] transition-colors min-w-0">
                   {title}
                 </span>
                 <span className="col-span-4 hidden md:block text-xs text-[#9B7070]">{album}</span>
@@ -156,7 +156,7 @@ export default function AudiosPage() {
                 >
                   {raga}
                 </span>
-                <span className="col-span-1 text-right text-xs text-[#9B7070]">{duration}</span>
+                <span className="shrink-0 md:col-span-1 text-right text-xs text-[#9B7070]">{duration}</span>
               </div>
             ))}
           </div>

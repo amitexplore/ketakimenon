@@ -55,8 +55,8 @@ export default function AboutPage() {
                 priority
               />
             </div>
-            {/* Decorative offset border */}
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#C9A84C]/20 -z-10" />
+            {/* Decorative offset border — hidden on mobile to prevent horizontal scroll */}
+            <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#C9A84C]/20 -z-10 hidden sm:block" />
           </div>
 
           {/* Bio text */}

@@ -61,7 +61,7 @@ export default function HeroSection() {
           <div className="max-w-3xl mx-auto py-24">
 
             {/* Corner-bracket frame */}
-            <div className="relative inline-block px-10 py-12 frame-corners" style={fade(0.3)}>
+            <div className="relative inline-block px-6 py-10 sm:px-10 sm:py-12 frame-corners" style={fade(0.3)}>
 
               <p
                 className="text-[10px] tracking-[0.5em] text-[#C9A84C] uppercase mb-6"
