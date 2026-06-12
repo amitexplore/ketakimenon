@@ -1,15 +1,9 @@
 import Image from 'next/image';
 import OrnamentDivider from '@/components/OrnamentDivider';
 
-const photos = [
-  '/photos/FB_IMG_1509544845056.jpg',
-  '/photos/IMG_0286.JPG',
-  '/photos/IMG_3740.jpg',
-  '/photos/Open%20fa8d5816-dcfc-4e2f-9dbb-14e6cb61918b.png',
-  '/photos/Portrait%201.jpeg',
-];
+interface Props { photos: string[]; }
 
-export default function GalleryContent() {
+export default function GalleryContent({ photos }: Props) {
   return (
     <div>
       <div className="bg-[#6B1A1A] py-20 px-6 text-center texture-overlay">

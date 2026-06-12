@@ -1,7 +1,10 @@
 import OrnamentDivider from '@/components/OrnamentDivider';
 import AudioTrackList from '@/components/AudioTrackList';
 
-export default function AudiosContent() {
+interface Track { title: string; src: string; }
+interface Props { tracks: Track[]; }
+
+export default function AudiosContent({ tracks }: Props) {
   return (
     <div>
       <div className="bg-[#6B1A1A] py-20 px-6 text-center texture-overlay">
@@ -29,7 +32,7 @@ export default function AudiosContent() {
           </h2>
           <OrnamentDivider />
         </div>
-        <AudioTrackList />
+        <AudioTrackList tracks={tracks} />
       </div>
     </div>
   );

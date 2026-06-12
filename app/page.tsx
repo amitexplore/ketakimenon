@@ -1,38 +1,31 @@
-'use client';
-import { useNavigation } from '@/components/NavigationProvider';
-import BackgroundAudio from '@/components/BackgroundAudio';
-import HomeContent    from '@/components/pages/HomeContent';
-import AboutContent   from '@/components/pages/AboutContent';
-import VideosContent  from '@/components/pages/VideosContent';
-import AudiosContent  from '@/components/pages/AudiosContent';
-import GalleryContent from '@/components/pages/GalleryContent';
-import ServicesContent from '@/components/pages/ServicesContent';
-import ContactContent from '@/components/pages/ContactContent';
+import fs from 'fs';
+import path from 'path';
+import SpaApp from '@/components/SpaApp';
 
-export default function App() {
-  const { page } = useNavigation();
+const IMAGE_EXTS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif'];
+const AUDIO_EXTS = ['.mp3', '.m4a', '.mp4', '.wav', '.ogg', '.flac'];
 
-  const content = {
-    home:     <HomeContent />,
-    about:    <AboutContent />,
-    videos:   <VideosContent />,
-    audios:   <AudiosContent />,
-    gallery:  <GalleryContent />,
-    services: <ServicesContent />,
-    contact:  <ContactContent />,
-  }[page];
+export default function Page() {
+  let photos: string[] = [];
+  try {
+    const dir = path.join(process.cwd(), 'public', 'photos');
+    photos = fs.readdirSync(dir)
+      .filter(f => IMAGE_EXTS.includes(path.extname(f).toLowerCase()))
+      .sort()
+      .map(f => `/photos/${encodeURIComponent(f)}`);
+  } catch {}
 
-  const audioPages = page === 'home' || page === 'about';
+  let tracks: Array<{ title: string; src: string }> = [];
+  try {
+    const dir = path.join(process.cwd(), 'public', 'Audio');
+    tracks = fs.readdirSync(dir)
+      .filter(f => AUDIO_EXTS.includes(path.extname(f).toLowerCase()))
+      .sort()
+      .map(f => ({
+        title: path.basename(f, path.extname(f)),
+        src: `/Audio/${encodeURIComponent(f)}`,
+      }));
+  } catch {}
 
-  return (
-    <>
-      {/* BackgroundAudio is mounted once and persists; active prop controls play/pause */}
-      <BackgroundAudio active={audioPages} />
-
-      {/* key forces a remount (and the CSS fade-in) on every page change */}
-      <div key={page} className="animate-fade-in">
-        {content}
-      </div>
-    </>
-  );
+  return <SpaApp photos={photos} tracks={tracks} />;
 }
